@@ -1,11 +1,11 @@
 import express from 'express';
 import ProductManager from './manejoDeArchivos.js';
-// const pm = require('manejoDeArchivos');
+
 
 const pm = new ProductManager();
 const app = express();
 
-
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/products/', (req, res) => {
 
