@@ -28,5 +28,5 @@ app.get('/products/:pid', (req, res) => {
 })
 
 app.listen(8080, () => {
-    console.log('Estoy escuchando el puerto 8080');
+    console.log('Estoy escuchando el puerto 8080...');
 });
