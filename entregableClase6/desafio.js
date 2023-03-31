@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/products/', (req, res) => {
+app.get('/products', (req, res) => {
 
     const { limit } = req.query
     pm.getProducts().then(products => {
@@ -17,7 +17,7 @@ app.get('/products/', (req, res) => {
 })
 
 app.get('/products/:pid', (req, res) => {
-    console.log(req.params.pid);
+    
 
     pm.getProductById(req.params.pid)
         .then(product =>{
