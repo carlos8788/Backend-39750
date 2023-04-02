@@ -7,25 +7,22 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/products', (req, res) => {
-
+app.get('/products', async (req, res) => {
     const { limit } = req.query
-    pm.getProducts().then(products => {
-        const limitProduts = products.slice(0, limit)
-        res.send(limitProduts)})
-        .catch(err => res.status(500).send(err))
-})
 
-app.get('/products/:pid', (req, res) => {
+    const products = await pm.getProducts()
     
+    const limitProduts = products.slice(0, limit)
+    res.json(limitProduts)
+});
 
-    pm.getProductById(req.params.pid)
-        .then(product =>{
-            
-            (res.send(product))
-        })
-        .catch(err => res.status(500).send(err))
-})
+app.get('/products/:pid', async (req, res) => {
+
+    const product = await pm.getProductById(req.params.pid)
+    console.log(product);
+    res.json(product)
+
+});
 
 app.listen(8080, () => {
     console.log('Estoy escuchando el puerto 8080...');

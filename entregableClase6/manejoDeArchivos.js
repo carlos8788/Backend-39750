@@ -51,6 +51,7 @@ class ProductManager {
     getProducts = async () => {
         try {
             const getFileProducts = await fs.promises.readFile(this.path, 'utf-8')
+            
             return JSON.parse(getFileProducts)
         } catch {
             return 'No se puede leer el archivo'
@@ -64,11 +65,11 @@ class ProductManager {
             const parseProducst = JSON.parse(getFileProducts);
             console.log(parseProducst[id - 1]);
             if (!parseProducst[id - 1]) return 'Error! No existe'
-
+            console.log(parseProducst[id - 1]);
             return parseProducst[id - 1]
         }
         catch (err) {
-            console.log(err);
+            return err
         }
     }
 
@@ -105,7 +106,8 @@ class ProductManager {
 // // console.log(instancia.products);
 // console.log(instancia.getProductById(2))
 // console.log(instancia.getProductById(4))
-// // instancia.getProductById(2);
+
+// instancia.getProducts()
 // // instancia.getProductById(4);
 // // instancia.updateProduct(1, {
 // //     "title": "AOE2",
@@ -119,3 +121,4 @@ class ProductManager {
 
 export default ProductManager
 
+// console.log('Hola')
