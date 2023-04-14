@@ -60,21 +60,26 @@ class CartManager {
         }
     }
 
-    updateCart = async (pid, data) => {
+    updateCart = async (cid, data) => {
         try {
             const getFileCarts = await fs.promises.readFile(this.path, 'utf-8')
             const parseCarts = JSON.parse(getFileCarts);
             // console.log(parseProducts);
             if (isNaN(Number(pid))) return { status: "error", message: 'No es un id válido' };
 
-            const findId = parseCarts.findIndex(product => product.id == pid)
+            const findId = parseCarts.findIndex(product => product.id == cid)
             if (findId === -1) return { status: "error", message: 'No se encontró el id' };
 
-            const returnedTarget = Object.assign(parseCarts[pid - 1], data);
 
-            parseCarts[pid - 1] = returnedTarget;
+            this.carts = parseCarts.map(element => {
+                if(element.id == cid){
+                    element = Object.assign(element, data);
+                   return element
+                }
+                return element
+            })
+            
 
-            this.carts = parseCarts
             const toJSON = JSON.stringify(this.carts, null, 2);
             await fs.promises.writeFile(this.path, toJSON)
             return returnedTarget

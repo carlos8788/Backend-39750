@@ -100,15 +100,19 @@ class ProductManager {
         const findId = parseProducts.findIndex(product => product.id == pid)
         if (findId === -1) return { status: "error", message: 'No se encontró el id' };
 
-        const returnedTarget = Object.assign(parseProducts[pid - 1], data);
+        this.products = parseProducts.map(element => {
+                if(element.id == pid){
+                    element = Object.assign(element, data);
+                   return element
+                }
+                return element
+            })
 
-        parseProducts[pid - 1] = returnedTarget;
-
-        this.products = parseProducts
         this.__appendProduct()
         return returnedTarget
 
     }
+
 
     deleteProduct = async (pid) => {
         const getFileProducts = await fs.promises.readFile(this.path, 'utf-8')
@@ -118,9 +122,8 @@ class ProductManager {
         const findId = parseProducts.findIndex(product => product.id == pid)
         if (findId === -1) return { status: "error", message: 'No se encontró el id' };
 
-        const filtro = parseProducts.filter(product => product.id !== pid)
-        // console.log(parseProducts);
-        this.products = filtro;
+        this.products = parseProducts.filter(product => product.id !== pid)
+        
         this.__appendProduct();
         return { status: "success", message: `se eliminó el producto con id ${pid}` }
     }
