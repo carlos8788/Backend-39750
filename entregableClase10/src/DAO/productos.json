@@ -171,5 +171,35 @@
     "code": "123123123111",
     "stock": 123123123111,
     "id": 13
+  },
+  {
+    "title": "asdasdas",
+    "description": "dasdasdasd",
+    "price": 23123123,
+    "status": true,
+    "category": "asdasdasd",
+    "thumbnail": [
+      [
+        "empty"
+      ]
+    ],
+    "code": "9999999999999999",
+    "stock": 1231231232,
+    "id": 14
+  },
+  {
+    "title": "zxczxczxc",
+    "description": "zxczxcz",
+    "price": 123123123,
+    "status": true,
+    "category": "xczxczxcz",
+    "thumbnail": [
+      [
+        "empty"
+      ]
+    ],
+    "code": "44444444444444444444",
+    "stock": 44,
+    "id": 15
   }
 ]

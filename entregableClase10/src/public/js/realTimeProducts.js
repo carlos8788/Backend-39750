@@ -46,7 +46,7 @@ formulario.addEventListener('submit', (event) =>{
     console.log(data);
     
     socket.emit('product', data)
-    
+    formulario.reset()
 })
 // data 
 
